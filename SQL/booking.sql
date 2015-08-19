@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015 年 8 朁E19 日 04:56
+-- Generation Time: 2015 年 8 朁E19 日 05:35
 -- サーバのバージョン： 5.6.25
 -- PHP Version: 5.6.11
 
@@ -33,9 +33,17 @@ CREATE TABLE IF NOT EXISTS `bookings` (
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
   `is_deleted` tinyint(1) NOT NULL,
-  `created` date NOT NULL,
-  `modified` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `equipment_id`, `user_id`, `start`, `end`, `is_deleted`, `created`, `modified`) VALUES
+(1, 1, 1, '2015-08-19 05:27:00', '2015-08-19 08:27:00', 0, '2015-08-19 00:00:00', '2015-08-19 00:00:00'),
+(2, 2, 1, '2015-08-20 10:29:00', '2015-08-20 11:29:00', 0, '2015-08-19 00:00:00', '2015-08-19 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -47,8 +55,8 @@ CREATE TABLE IF NOT EXISTS `equipments` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL,
-  `created` date NOT NULL,
-  `modified` date NOT NULL
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
@@ -56,8 +64,8 @@ CREATE TABLE IF NOT EXISTS `equipments` (
 --
 
 INSERT INTO `equipments` (`id`, `name`, `is_deleted`, `created`, `modified`) VALUES
-(1, 'ä¼šè­°å®¤ï¼‘', 0, '2015-08-19', '2015-08-19'),
-(2, 'ä¼šè­°å®¤ï¼’', 0, '2015-08-19', '2015-08-19');
+(1, '会議室１', 0, '2015-08-19 00:00:00', '2015-08-19 00:00:00'),
+(2, '会議室２', 0, '2015-08-19 00:00:00', '2015-08-19 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -99,8 +107,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `address` varchar(256) NOT NULL,
   `gender_id` int(11) NOT NULL,
   `birthday` date NOT NULL,
-  `created` int(11) NOT NULL,
-  `modified` int(11) NOT NULL
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
@@ -108,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `is_deleted`, `family_name`, `first_name`, `phone`, `postcode1`, `postcode2`, `prefecture`, `city`, `address`, `gender_id`, `birthday`, `created`, `modified`) VALUES
-(1, 0, '七月', '太郎', '000-000-000', 12, 127, '東京都', '千代田区', 'いいだばし1-1-1', 2, '2010-08-19', 1439951882, 1439952920);
+(1, 0, '七月', '太郎', '000-000-000', 12, 127, '東京都', '千代田区', 'いいだばし1-1-1', 2, '2010-08-19', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -146,7 +154,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `equipments`
 --
